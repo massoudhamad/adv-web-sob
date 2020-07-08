@@ -5,10 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 @WebServlet(name = "DBServletLecture")
 public class DBServletLecture extends HttpServlet {
@@ -36,8 +33,17 @@ public class DBServletLecture extends HttpServlet {
             Connection conn = DriverManager.getConnection(DB_URL,DB_USER,DB_PASS);
             //SQL Statements
             Statement stmt = conn.createStatement();
-            String sqlinsert="INSERT INTO std_sob(id,age) VALUES(1,40)";
+            String sqlinsert="INSERT INTO std_sob(id,age) VALUES(2,40)";
             int outi=stmt.executeUpdate(sqlinsert);
+            String sql= "SELECT * FROM std_sob";
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next())
+            {
+                int id=rs.getInt("id");
+                int age=rs.getInt("age");
+                out.println("ID: " + id + "<br>");
+                out.println(" Age: " + age + "<br>");
+            }
             stmt.close();
             conn.close();
         }
