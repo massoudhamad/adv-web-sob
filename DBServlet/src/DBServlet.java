@@ -10,11 +10,11 @@ import java.sql.*;
 @WebServlet(name = "DBServlet")
 public class DBServlet extends HttpServlet {
     static final String JDBC_DRIVER="com.mysql.jdbc.Driver";
-    static final String DB_URL="jdbc:mysql://localhost:3306/vit";
+    static final String DB_URL="jdbc:mysql://localhost:3306/student";
 
     // Database credentials
     static final String USER = "root";
-    static final String PASS = "";
+    static final String PASS = "Admin123!";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,12 +33,13 @@ public class DBServlet extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
 // Open a connection
             Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-// Execute SQL query
+// Execute SQL quer
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "insert into emp values(4,40)";
+            sql = "insert into postgraduate values(7,70)";
             int x = stmt.executeUpdate(sql);
-            sql = "SELECT * from emp";
+
+            sql = "SELECT * from postgraduate";
             ResultSet rs = stmt.executeQuery(sql);
 // Extract data from result set
             while (rs.next()) {
