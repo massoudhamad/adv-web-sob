@@ -1,0 +1,45 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>XML http request</title>
+    <script>
+      async function getUsers() {
+        let response = await fetch(
+          "http://localhost:8090/api/v1/employee"
+        );
+        let data = await response.json();
+        return data;
+      }
+      getUsers().then(data => console.log(data));
+    </script>
+  </head>
+
+  <body></body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ajax Api call by jQuery</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $.ajax({
+          url: "http://localhost:8090/api/v1/employee",
+          type: "GET",
+          success: function(result) {
+            console.log(result);
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        });
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
